@@ -32,7 +32,7 @@ function query_replicas_readonly() {
   TMP=$(mktemp)
   pre="{\"is_readonly\":{"
   post="}}"
-  item_dist=""
+  item_dict=""
 
   $CLICKHOUSE_CLI -m -q "$SQL_READONLY" 1>$TMP
 
@@ -41,11 +41,11 @@ function query_replicas_readonly() {
     table_name=$(echo $line | awk '{print $2}')
     is_readonly=$(echo $line | awk '{print $3}')
     item="\"${db_name}_T_${table_name}\":${is_readonly},"
-    item_dist="${item_dist}${item}"
+    item_dict="${item_dict}${item}"
   done <$TMP
 
-  item_dist=$(echo $item_dist | sed 's/\(.*\),$/\1/g')
-  echo "${pre}${item_dist}${post}"
+  item_dict=$(echo $item_dict | sed 's/\(.*\),$/\1/g')
+  echo "${pre}${item_dict}${post}"
   rm -f $TMP
 }
 
