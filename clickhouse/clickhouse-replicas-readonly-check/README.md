@@ -14,6 +14,8 @@
   
 ## Install
 
+* zabbix >= 3.4
+
 1. download clickhouse_replicas_readonly_check.conf clickhouse_replicas_readonly_check.sh zbx_clickhouse_replicas_readonly_check.xml files.
 
 2. upload clickhouse_replicas_readonly_check.conf clickhouse_replicas_readonly_check.sh to /etc/zabbix/zabbix_agentd.d/ who running clickhouse server
